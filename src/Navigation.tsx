@@ -48,7 +48,7 @@ import {
       );
       // Navigate to some location on another floor
       const endLocation = venue.locations.find((location) =>
-        location.id.startsWith("Mens Washroom")
+        location.name.startsWith("Men")
       );
   
       if (startLocation && endLocation) {
