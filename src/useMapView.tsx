@@ -41,7 +41,7 @@ import {
   
         mapRef.current = element;
   
-        if (mapView == null && venue != null && isRendering.current == false) {
+        if (mapView === null && venue != null && isRendering.current === false) {
           renderVenue(element, venue, options);
         }
       },
