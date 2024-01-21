@@ -48,6 +48,182 @@ const App: React.FC = () => {
           description: "... washrooms",
         },
       },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.2456762611106, 49.26423103672272],
+        },
+        properties: {
+          title: "UBC Hospital",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.25314248131448, 49.266061050763426],
+        },
+        properties: {
+          title: "UBC Chemistry Building",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.25514720949033, 49.266640776882724],
+        },
+        properties: {
+          title: "UBC Koerner Library",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.2539754452042, 49.26834143064795],
+        },
+        properties: {
+          title: "UBC Buchanan",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.2425072899799, 49.266672932376736],
+        },
+        properties: {
+          title: "UBC Mcdonald's",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.25203414494928, 49.263179299778415],
+        },
+        properties: {
+          title: "UBC Earth Sciences Building",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.2542644753265, 49.262861594635666],
+        },
+        properties: {
+          title: "UBC Swing Space",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.2416327299978, 49.26004429397963],
+        },
+        properties: {
+          title: "UBC Thunderbird Arena",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.26185757041759, 49.26123130155392],
+        },
+        properties: {
+          title: "UBC Wreck Beach",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.23680237943631, 49.25466730147801],
+        },
+        properties: {
+          title: "UBC Save-On-Foods",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.24442796301986, 49.256721048051986],
+        },
+        properties: {
+          title: "FPInnovations",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.2488600097989, 49.26114210356761],
+        },
+        properties: {
+          title: "UBC ICICS",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.25146003572073, 49.260517710592836],
+        },
+        properties: {
+          title: "UBC OC",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.25755850213645, 49.270229062179396],
+        },
+        properties: {
+          title: "UBC Department of Anthropology",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.25190673888444, 49.26436102438785],
+        },
+        properties: {
+          title: "UBC BIOSCI Building",
+          description: "... washrooms",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-123.24763794898352, 49.26457072947733],
+        },
+        properties: {
+          title: "UBC Woodward Library",
+          description: "... washrooms",
+        },
+      },
     ],
   };
 
