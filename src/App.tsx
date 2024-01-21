@@ -159,10 +159,35 @@ const AmsNest: React.FC = () => {
 };
 
 const LifeSciencesInstitute: React.FC = () => {
+  const mapRef = useRef();
+  // See Trial API key Terms and Conditions
+  // https://developer.mappedin.com/api-keys
+  const options = useMemo<TGetVenueMakerOptions>(
+    () => ({
+      mapId: "657cc670040fcba69696e69e",
+      key: "65a0422df128bbf7c7072349",
+      secret: "5f72653eba818842c16c4fdb9c874ae02100ffced413f638b7bd9c65fd5b92a4"
+    }),
+    []
+  );
+
+  const venue = useVenueMaker(options);
+
+  const mapOptions = useMemo<TMapViewOptions>(
+    () => ({
+      backgroundColor: "#CFCFCF" // Background colour behind the map
+    }),
+    []
+  );
+
+  const { elementRef, mapView } = useMapView(venue, mapOptions);
+
   return (
     <div>
       <h1>Life Sciences Institute Page</h1>
-      {/* Add content for the AMS Nest page */}
+      <div style={{ overflow: 'scroll', height: '120' }}>
+      <div id="app" ref={elementRef} />;
+      </div>
     </div>
   );
 };
