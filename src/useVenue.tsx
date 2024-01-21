@@ -1,4 +1,3 @@
-Copy
 import { TGetVenueOptions, Mappedin, getVenue } from "@mappedin/mappedin-js";
 import React, { useState, useEffect } from "react";
 
