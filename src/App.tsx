@@ -10,12 +10,23 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mappedin/mappedin-js/lib/mappedin.css";
 import useMapView from './useMapView.tsx';
 import useVenue from "./useVenue";
+import { Link } from 'react-router-dom';
+import Navigation from "./Navigation.tsx";
+import Interactivity from "./Interactivity.tsx";
+import Camera from "./Camera.tsx";
 
-import { TGetVenueMakerOptions } from "@mappedin/mappedin-js";
+
+import {
+  TGetVenueMakerOptions,
+  MARKER_ANCHOR,
+  COLLISION_RANKING_TIERS
+} from "@mappedin/mappedin-js";
 import { TMapViewOptions } from "@mappedin/mappedin-js/renderer/internal";
 import "@mappedin/mappedin-js/lib/mappedin.css";
 import "./App.css";
 import useVenueMaker from "./useVenueMaker.ts";
+
+import useMapClick from "./useMapClick";
 
 
 const App: React.FC = () => {
@@ -115,8 +126,18 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      <div style={{ display: "flex", gap: "12px" }}>
+        Examples:
+        <Link to="/ams-nest">Basic</Link>
+        <Link to="/ams-nest/interactivity">Interactivity</Link>
+        <Link to="/ams-nest/navigation">Navigation</Link>
+        <Link to="/ams-nest/camera">Camera</Link>
+      </div>
       <Routes>
         <Route path="/ams-nest" element={<AmsNest />} />
+        <Route path="/ams-nest/interactivity" element={<Interactivity />} />
+        <Route path="/ams-nest/navigation" element={<Navigation />} />
+        <Route path="/ams-nest/camera" element={<Camera />} />
         <Route path="/life-sciences-institute" element={<LifeSciencesInstitute />} />
       </Routes>
       <div ref={mapContainer} style={{ width: "100%", height: "100vh" }} />
@@ -150,10 +171,58 @@ const AmsNest: React.FC = () => {
 
   const { elementRef, mapView } = useMapView(venue, mapOptions);
 
+  /* Map setup should be done in a useEffect */
+  useEffect(() => {
+    // Check that the map and venue were created successfully
+    if (!mapView || !venue) {
+      return;
+    }
+
+    // Label all spaces and desks which have a name
+    mapView.FloatingLabels.labelAllLocations();
+  }, [mapView, venue]);
+
+  useEffect(() => {
+    // Check that the map and venue were created successfully
+    if (!mapView || !venue) {
+      return;
+    }
+
+    // Label all spaces and desks which have a name
+    mapView.FloatingLabels.labelAllLocations();
+  }, [mapView, venue]);
+
   return (
-    <div>
-      <h1>AMS Nest Page</h1>
-    <div id="app" ref={elementRef} />;
+    <div id="app">
+      <div id="ui">
+        {/* Render some map details to the UI */}
+        {venue?.venue.name ?? "Loading..."}
+        {venue && (
+          <select
+            onChange={(e) => {
+              if (!mapView || !venue) {
+                return;
+              }
+
+              // When the floor select changes we can find and set the map to that ID
+              const floor = venue.maps.find((map) => map.id === e.target.value);
+              if (floor) {
+                mapView.setMap(floor);
+              }
+            }}
+          >
+            {/* The venue "maps" represent each floor */}
+            {venue?.maps.map((level, index) => {
+              return (
+                <option value={level.id} key={index}>
+                  {level.name}
+                </option>
+              );
+            })}
+          </select>
+        )}
+      </div>
+      <div id="map-container" ref={elementRef}></div>
     </div>
   );
 };
@@ -164,8 +233,12 @@ const LifeSciencesInstitute: React.FC = () => {
       <h1>Life Sciences Institute Page</h1>
       {/* Add content for the AMS Nest page */}
     </div>
+
+    
   );
 };
+
+
 
 export default App;
 
