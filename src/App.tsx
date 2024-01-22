@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import Navigation from "./Navigation.tsx";
 import Interactivity from "./Interactivity.tsx";
 import Camera from "./Camera.tsx";
+import NavigationLSI from "./NavigationLSI.tsx"
 
 
 import {
@@ -299,22 +300,20 @@ const App: React.FC = () => {
     return () => map.remove();
   }, []);
 
-
   return (
     <Router>
-      <div style={{ display: "flex", gap: "12px" }}>
-        Examples:
-        <Link to="/ams-nest">Basic</Link>
-        <Link to="/ams-nest/interactivity">Interactivity</Link>
-        <Link to="/ams-nest/navigation">Navigation</Link>
-        <Link to="/ams-nest/camera">Camera</Link>
-      </div>
       <Routes>
         <Route path="/ams-nest" element={<AmsNest />} />
         <Route path="/ams-nest/interactivity" element={<Interactivity />} />
-        <Route path="/ams-nest/navigation" element={<Navigation />} />
+        <Route path="/ams-nest/navigation" element={<Navigation mapID = "659efcf1040fcba69696e7b6"/>} />
         <Route path="/ams-nest/camera" element={<Camera />} />
         <Route path="/life-sciences-institute" element={<LifeSciencesInstitute />} />
+        <Route path="/life-sciences-institute/interactivity" element={<Interactivity />} />
+        <Route
+    path="/life-sciences-institute/navigation"
+    element={<Navigation mapID = "657cc670040fcba69696e69e"/>}
+  />
+        <Route path="/life-sciences-institute/camera" element={<Camera />} />
       </Routes>
       <div ref={mapContainer} style={{ width: "100%", height: "100vh" }} />
     </Router>
@@ -371,6 +370,13 @@ const AmsNest: React.FC = () => {
   return (
     <div id="app">
       <div id="ui">
+      <div style={{ display: "flex", gap: "12px" }}>
+        Examples:
+        <Link to="/ams-nest">Basic</Link>
+        <Link to="/ams-nest/interactivity">Interactivity</Link>
+        <Link to="/ams-nest/navigation">Navigation</Link>
+        <Link to="/ams-nest/camera">Camera</Link>
+      </div>
         {/* Render some map details to the UI */}
         {venue?.venue.name ?? "Loading..."}
         {venue && (
@@ -428,14 +434,44 @@ const LifeSciencesInstitute: React.FC = () => {
   const { elementRef, mapView } = useMapView(venue, mapOptions);
 
   return (
-    <div>
-      <h1>Life Sciences Institute Page</h1>
-      <div style={{ overflow: 'scroll', height: '120' }}>
-      <div id="app" ref={elementRef} />;
+    <div id="app">
+      <div id="ui">
+      <div style={{ display: "flex", gap: "12px" }}>
+        Examples:
+        <Link to="/life-sciences-institute">Basic</Link>
+        <Link to="/life-sciences-institute/interactivity">Interactivity</Link>
+        <Link to="/life-sciences-institute/navigation">Navigation</Link>
+        <Link to="/life-sciences-institute/camera">Camera</Link>
       </div>
-    </div>
+        {/* Render some map details to the UI */}
+        {venue?.venue.name ?? "Loading..."}
+        {venue && (
+          <select
+            onChange={(e) => {
+              if (!mapView || !venue) {
+                return;
+              }
 
-    
+              // When the floor select changes we can find and set the map to that ID
+              const floor = venue.maps.find((map) => map.id === e.target.value);
+              if (floor) {
+                mapView.setMap(floor);
+              }
+            }}
+          >
+            {/* The venue "maps" represent each floor */}
+            {venue?.maps.map((level, index) => {
+              return (
+                <option value={level.id} key={index}>
+                  {level.name}
+                </option>
+              );
+            })}
+          </select>
+        )}
+      </div>
+      <div id="map-container" ref={elementRef}></div>
+    </div>
   );
 };
 

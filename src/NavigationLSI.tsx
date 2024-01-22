@@ -12,10 +12,10 @@ import {
   import React from 'react'
   
   /* This demo shows you how to draw a path between two locations. */
-  export default function NavigationExample({mapID}) {
+  export default function NavigationExample() {
     const credentials = useMemo<TGetVenueMakerOptions>(
       () => ({
-        mapId: mapID,
+        mapId: "657cc670040fcba69696e69e",
         key: "65a0422df128bbf7c7072349",
         secret: "5f72653eba818842c16c4fdb9c874ae02100ffced413f638b7bd9c65fd5b92a4"
       }),
